@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="./css/styles.css" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Main JS -->
+    <script src="./js/main.js" defer></script>
+</head>
+
+
+<body>
+
+    <!-- Header + Navigation -->
+<body>
+
+    <!-- 顶部 Header（Flexbox） -->
+    <header class="site-header">
+        <div class="logo">
+            <span class="logo-mark">CG</span>
+            <span class="logo-text">Chaojin Guo</span>
+        </div>
+
+        <!-- 手机端菜单按钮（可选） -->
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            Menu
+        </button>
+
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <!-- 主题切换（如果你还想保留深色模式） -->
+        <button class="theme-toggle" aria-label="Toggle light or dark theme">
+            🌙
+        </button>
+    </header>
+
+    <!-- 主体：左侧 Sidebar + 右侧主内容 -->
+    <div class="page-layout">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2>Profile</h2>
+                <p>Boston University student focused on Web Development and Data Analytics.</p>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="#about">About me</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Contact</h2>
+                <ul>
+                    <li><a href="mailto:gr4113@bu.edu">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/chaojin-guo-b07218328/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/grfeng4113" target="_blank">GitHub</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- 右侧主内容：可以保留你之前的 hero / skills / projects，只要加上 id 对应锚点 -->
+        <main class="main-content">
+            <!-- About 区域 -->
+            <section id="about" class="section">
+                <h1>Hello, I'm <span class="highlight">Chaojin Guo</span></h1>
+                <p class="subtitle">
+                    A Boston University student passionate about web development, software engineering,
+                    and data science. This site showcases my coursework, projects, and skills.
+                </p>
+            </section>
+
+            <!-- Skills 区域（可选） -->
+            <section class="section" id="skills">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-container">
+                    <div class="skill-card">HTML5</div>
+                    <div class="skill-card">CSS3</div>
+                    <div class="skill-card">JavaScript</div>
+                    <div class="skill-card">React</div>
+                    <div class="skill-card">TypeScript</div>
+                    <div class="skill-card">R / Data Analysis</div>
+                </div>
+            </section>
+
+            <!-- Projects 区域 -->
+            <section id="projects" class="section">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="project-grid">
+                    <!-- 项目卡片照旧 -->
+                    <div class="project-card">
+                        <h3>Smart Fridge Tracker</h3>
+                        <p>Track food freshness and reduce waste using a responsive web app.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Water Bottle Filling Station</h3>
+                        <p>Data-driven visualization of station usage and responsive UI.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>Our Recipe</h3>
+                        <p>React-based platform with filtering and API integration.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact 区域（可以以后加表单） -->
+            <section id="contact" class="section">
+                <h2 class="section-title">Get in Touch</h2>
+                <p>If you would like to connect, feel free to reach out via email or LinkedIn.</p>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer 不变也可以 -->
+    <footer class="footer">
+        <p>© 2025 Chaojin Guo — All Rights Reserved.</p>
+    </footer>
+
+</body>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Hello, I'm <span class="highlight">Chaojin Guo</span></h1>
+            <p class="subtitle">
+                A Boston University student passionate about web development, software engineering,
+                and data science. This site showcases my coursework, projects, and skills.
+            </p>
+            <!-- Scroll to Featured Projects section -->
+            <a href="#featured" class="btn-primary">View My Work</a>
+        </div>
+
+        <div class="hero-img">
+            <!-- Replace the src with your own image path -->
+            <img src="./assets/profile.jpg" alt="Profile photo of Chaojin Guo" />
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+            <div class="skill-card">HTML5</div>
+            <div class="skill-card">CSS3</div>
+            <div class="skill-card">JavaScript</div>
+            <div class="skill-card">React</div>
+            <div class="skill-card">TypeScript</div>
+            <div class="skill-card">R / Data Analysis</div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section class="section" id="featured">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="project-grid">
+
+            <div class="project-card">
+                <h3>Smart Fridge Tracker</h3>
+                <p>
+                    A responsive web app that helps users track food freshness, reduce waste,
+                    and maintain inventory. Built with HTML5, CSS3, and JavaScript.
+                </p>
+                <a href="projects.html" class="btn-secondary">Learn More</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Water Bottle Filling Station</h3>
+                <p>
+                    A course project from MET CS601 that visualizes water usage data and
+                    demonstrates responsive layout and accessibility techniques.
+                </p>
+                <a href="projects.html" class="btn-secondary">Learn More</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Our Recipe</h3>
+                <p>
+                    A React-based cooking platform where users can browse, filter, and
+                    share recipes. Includes client-side routing and API integration.
+                </p>
+                <a href="projects.html" class="btn-secondary">Learn More</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Chaojin Guo — All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="mailto:gr4113@bu.edu">Email</a>
+            <a href="https://www.linkedin.com/in/chaojin-guo-b07218328/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://github.com/grfeng4113" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+    </footer>
+
+</body>
+</html>
