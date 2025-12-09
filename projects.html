@@ -13,7 +13,7 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- 你的主 JS（导航、主题、表单等） -->
+    <!-- Main JS (navigation, theme, forms, etc.) -->
     <script src="./js/main.js" defer></script>
 </head>
 <body>
@@ -71,7 +71,7 @@
             </section>
 
             <section class="section">
-                <!-- React 挂载点 -->
+                <!-- React Mounting Point -->
                 <div id="projects-root"></div>
             </section>
         </main>
@@ -81,9 +81,9 @@
         <p>© 2025 Chaojin Guo — All Rights Reserved.</p>
     </footer>
 
-    <!-- React JSX 代码 -->
+    <!-- React JSX Code -->
     <script type="text/babel">
-        // ======= 项目数据（可以按需要改） =======
+        // ======= Project Data =======
         const PROJECTS = [
             {
                 id: 1,
@@ -92,7 +92,7 @@
                 tech: ["HTML5", "CSS3", "JavaScript"],
                 description:
                     "A responsive web app that tracks fridge items, expiration dates, and helps reduce food waste.",
-                image: "./assets/smart-fridge.png" // 没有这张图可以暂时删掉 image 字段
+                image: "./assets/smart-fridge.png"
             },
             {
                 id: 2,
@@ -125,7 +125,7 @@
 
         const CATEGORIES = ["All", "Web", "React", "Data"];
 
-        // ======= 分类按钮组件 =======
+        // ======= Category Filter Component =======
         function CategoryFilter({ activeCategory, onChange }) {
             return (
                 <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1rem" }}>
@@ -147,7 +147,7 @@
             );
         }
 
-        // ======= 单个项目卡片组件 =======
+        // ======= Single Project Card Component =======
         function ProjectCard({ project }) {
             return (
                 <div className="project-card">
@@ -172,7 +172,7 @@
             );
         }
 
-        // ======= 主 React 组件 =======
+        // ======= React Components =======
         function ProjectsApp() {
             const [category, setCategory] = React.useState("All");
 
@@ -197,7 +197,7 @@
             );
         }
 
-        // ======= 渲染到页面 =======
+        // ======= Render to page =======
         const rootEl = document.getElementById("projects-root");
         if (rootEl) {
             const root = ReactDOM.createRoot(rootEl);
