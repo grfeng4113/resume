@@ -13,7 +13,7 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- Main JS -->
+    <!-- Main JS (navigation, theme, forms, etc.) -->
     <script src="./js/main.js" defer></script>
 </head>
 <body>
@@ -75,12 +75,13 @@
             <section class="section">
                 <h1 class="section-title">Projects</h1>
                 <p class="subtitle">
-                    This page is rendered using <strong>React</strong>. You can filter and preview
-                    project screenshots by clicking on them.
+                    This page is rendered using <strong>React</strong>. You can filter projects
+                    by category and click on screenshots to view a larger preview.
                 </p>
             </section>
 
             <section class="section">
+                <!-- React Mounting Point -->
                 <div id="projects-root"></div>
             </section>
         </main>
@@ -101,7 +102,7 @@
                 tech: ["HTML5", "CSS3", "JavaScript"],
                 description:
                     "A responsive web app that tracks fridge items, expiration dates, and helps reduce food waste.",
-                image: "./assets/smart-fridge.png"
+                image: null
             },
             {
                 id: 2,
@@ -134,15 +135,18 @@
 
         const CATEGORIES = ["All", "Web", "React", "Data"];
 
-        // ======= Lightbox Component =======
+        // ======= Lightbox Component (click to enlarge) =======
         function ImageLightbox({ src, alt, onClose }) {
             React.useEffect(() => {
-                const esc = (e) => e.key === "Escape" && onClose();
-                window.addEventListener("keydown", esc);
-                return () => window.removeEventListener("keydown", esc);
+                const handleEsc = (e) => {
+                    if (e.key === "Escape") onClose();
+                };
+                window.addEventListener("keydown", handleEsc);
+                return () => window.removeEventListener("keydown", handleEsc);
             }, [onClose]);
 
             if (!src) return null;
+
             return (
                 <div className="lightbox-overlay" onClick={onClose}>
                     <img
@@ -155,7 +159,7 @@
             );
         }
 
-        // ======= Category Filter =======
+        // ======= Category Filter Component =======
         function CategoryFilter({ activeCategory, onChange }) {
             return (
                 <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1rem" }}>
@@ -167,7 +171,7 @@
                             className="btn-secondary"
                             style={{
                                 backgroundColor: activeCategory === cat ? "var(--accent-soft)" : "transparent",
-                                borderColor: activeCategory === cat ? "var(--accent)" : "var(--accent-soft)",
+                                borderColor: activeCategory === cat ? "var(--accent)" : "var(--accent-soft)"
                             }}
                         >
                             {cat}
@@ -177,15 +181,20 @@
             );
         }
 
-        // ======= Project Card with Click-to-Zoom =======
+        // ======= Single Project Card Component (with click-to-zoom) =======
         function ProjectCard({ project, onImageClick }) {
             return (
                 <div className="project-card">
                     <h3>{project.title}</h3>
-                    <p className="subtitle">Category: {project.category}</p>
-                    <p className="subtitle">Tech: {project.tech.join(", ")}</p>
-                    <p style={{ fontSize: "0.95rem" }}>{project.description}</p>
-
+                    <p className="subtitle" style={{ marginBottom: "0.25rem" }}>
+                        Category: {project.category}
+                    </p>
+                    <p className="subtitle" style={{ marginBottom: "0.5rem" }}>
+                        Tech: {project.tech.join(", ")}
+                    </p>
+                    <p style={{ fontSize: "0.95rem", marginBottom: "0.5rem" }}>
+                        {project.description}
+                    </p>
                     {project.image && (
                         <img
                             src={project.image}
@@ -198,7 +207,7 @@
             );
         }
 
-        // ======= Main App =======
+        // ======= React Components =======
         function ProjectsApp() {
             const [category, setCategory] = React.useState("All");
             const [lightbox, setLightbox] = React.useState({ src: null, alt: "" });
@@ -208,29 +217,41 @@
                     ? PROJECTS
                     : PROJECTS.filter((p) => p.category === category);
 
+            const handleImageClick = (src, alt) => {
+                setLightbox({ src, alt });
+            };
+
+            const handleCloseLightbox = () => {
+                setLightbox({ src: null, alt: "" });
+            };
+
             return (
                 <div>
                     <CategoryFilter activeCategory={category} onChange={setCategory} />
-                    <div className="project-grid">
-                        {visibleProjects.map((p) => (
-                            <ProjectCard
-                                key={p.id}
-                                project={p}
-                                onImageClick={(src, alt) => setLightbox({ src, alt })}
-                            />
-                        ))}
-                    </div>
+                    {visibleProjects.length === 0 ? (
+                        <p className="subtitle">No projects found for this category.</p>
+                    ) : (
+                        <div className="project-grid">
+                            {visibleProjects.map((p) => (
+                                <ProjectCard
+                                    key={p.id}
+                                    project={p}
+                                    onImageClick={handleImageClick}
+                                />
+                            ))}
+                        </div>
+                    )}
 
                     <ImageLightbox
                         src={lightbox.src}
                         alt={lightbox.alt}
-                        onClose={() => setLightbox({ src: null, alt: "" })}
+                        onClose={handleCloseLightbox}
                     />
                 </div>
             );
         }
 
-        // ======= Render =======
+        // ======= Render to page =======
         const rootEl = document.getElementById("projects-root");
         if (rootEl) {
             const root = ReactDOM.createRoot(rootEl);
@@ -267,6 +288,5 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
         }
     </style>
-
 </body>
 </html>
