@@ -51,11 +51,11 @@ body {
 }
 
 /* ========== LAYOUT ========== */
-/* 顶部 Header */
+/* Header */
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 200;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,7 +65,7 @@ body {
     border-bottom: 1px solid var(--border-soft);
 }
 
-/* Logo 组合 */
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
@@ -90,7 +90,7 @@ body {
     font-size: 1rem;
 }
 
-/* 顶部导航 */
+/* Header Navigation */
 .main-nav {
     display: flex;
     gap: 1rem;
@@ -114,7 +114,7 @@ body {
     transform: translateY(-1px);
 }
 
-/* 手机端菜单按钮 */
+/* Mobile Navigation Toggle */
 .nav-toggle {
     display: none;
     border: 1px solid var(--border-soft);
@@ -126,7 +126,7 @@ body {
     color: var(--text-main);
 }
 
-/* 主题切换按钮保持原有样式 */
+/* Theme Toggle Button */
 .theme-toggle {
     border: none;
     background: transparent;
@@ -332,7 +332,6 @@ body {
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
-    /* 顶部导航在手机端变成折叠菜单 */
     .main-nav {
         position: absolute;
         right: 1rem;
@@ -355,19 +354,18 @@ body {
         display: inline-flex;
     }
 
-    /* 布局从左右变为上下堆叠 */
     .page-layout {
         grid-template-columns: 1fr;
     }
 
     .sidebar {
         position: static;
-        order: -1; /* 让 sidebar 出现在内容上方（可按喜好调整） */
+        order: -1;
     }
 }
 
 
-/* 整体两栏布局：Sidebar + Main */
+/* Sidebar + Main */
 .page-layout {
     max-width: 1200px;
     margin: 1.5rem auto;
@@ -377,7 +375,7 @@ body {
     gap: 1.5rem;
 }
 
-/* 侧边栏 */
+/* Sidebar */
 .sidebar {
     background-color: var(--bg-surface);
     border-radius: 16px;
@@ -386,7 +384,7 @@ body {
     box-shadow: var(--shadow-soft);
     height: fit-content;
     position: sticky;
-    top: 4.5rem; /* 让侧边栏随滚动固定在顶部下面 */
+    top: 4.5rem;
 }
 
 .sidebar-section + .sidebar-section {
@@ -424,7 +422,7 @@ body {
     outline: none;
 }
 
-/* 主内容区域 */
+/* Main Content */
 .main-content {
     min-height: 60vh;
 }
