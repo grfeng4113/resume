@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume – Chaojin Guo</title>
+
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="./js/main.js" defer></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="logo">
+            <span class="logo-mark">CG</span>
+            <span class="logo-text">Chaojin Guo</span>
+        </div>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            Menu
+        </button>
+
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+            <a href="resume.html" class="active">Resume</a>
+        </nav>
+
+        <button class="theme-toggle" aria-label="Toggle light or dark theme">
+            🌙
+        </button>
+    </header>
+
+    <div class="page-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2>Download</h2>
+                <p>You can also download a PDF version of my resume.</p>
+                <!-- 如果你有 PDF，可以改成真实路径 -->
+                <a href="./assets/Chaojin_Guo_Resume.pdf" class="btn-secondary">Download PDF</a>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main-content">
+            <section class="section">
+                <h1 class="section-title">Resume</h1>
+                <p class="subtitle">Summary of my education, skills, and project experience.</p>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Education</h2>
+                <ul>
+                    <li>
+                        <strong>Boston University – Metropolitan College</strong><br />
+                        Graduate-level Computer Science coursework  
+                        Focus on Web Application Development, Data Analysis, and Software Engineering.
+                    </li>
+                    <br />
+                    <li>
+                        <strong>[Your Bachelor’s University]</strong><br />
+                        Bachelor’s degree in [Your Major]  
+                        <!-- TODO: 替换为真实信息 -->
+                    </li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Technical Skills</h2>
+                <ul>
+                    <li><strong>Languages:</strong> JavaScript, TypeScript, HTML5, CSS3, R, basic Java/Python</li>
+                    <li><strong>Frameworks & Libraries:</strong> React, DOM APIs, basic Node.js</li>
+                    <li><strong>Tools:</strong> Git, GitHub, VS Code, RStudio</li>
+                    <li><strong>Concepts:</strong> responsive design, component-based UI, basic statistical modeling</li>
+                </ul>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Selected Projects</h2>
+                <ul>
+                    <li><strong>Smart Fridge Tracker – Web App</strong> – term project for MET CS601.</li>
+                    <li><strong>Inventory App – React</strong> – GreenSquare Grocery inventory interface.</li>
+                    <li><strong>Portfolio Website</strong> – single-page site using pure HTML/CSS.</li>
+                    <li><strong>Statistical Analysis Report</strong> – CS555 project using R and LaTeX.</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Chaojin Guo — All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects – Chaojin Guo</title>
+
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- React + ReactDOM + Babel CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- 你的主 JS（导航、主题、表单等） -->
+    <script src="./js/main.js" defer></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="site-header">
+        <div class="logo">
+            <span class="logo-mark">CG</span>
+            <span class="logo-text">Chaojin Guo</span>
+        </div>
+
+        <button class="nav-toggle" aria-label="Toggle navigation">
+            Menu
+        </button>
+
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="contact.html">Contact</a>
+            <a href="resume.html">Resume</a>
+        </nav>
+
+        <button class="theme-toggle" aria-label="Toggle light or dark theme">
+            🌙
+        </button>
+    </header>
+
+    <div class="page-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h2>Projects</h2>
+                <p>A selection of web and data projects from my BU coursework.</p>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="projects.html">All Projects</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="main-content">
+            <section class="section">
+                <h1 class="section-title">Projects</h1>
+                <p class="subtitle">
+                    This page is rendered using <strong>React</strong>. You can filter projects
+                    by category to explore different types of work.
+                </p>
+            </section>
+
+            <section class="section">
+                <!-- React 挂载点 -->
+                <div id="projects-root"></div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <p>© 2025 Chaojin Guo — All Rights Reserved.</p>
+    </footer>
+
+    <!-- React JSX 代码 -->
+    <script type="text/babel">
+        // ======= 项目数据（可以按需要改） =======
+        const PROJECTS = [
+            {
+                id: 1,
+                title: "Smart Fridge Tracker",
+                category: "Web",
+                tech: ["HTML5", "CSS3", "JavaScript"],
+                description:
+                    "A responsive web app that tracks fridge items, expiration dates, and helps reduce food waste.",
+                image: "./assets/smart-fridge.png" // 没有这张图可以暂时删掉 image 字段
+            },
+            {
+                id: 2,
+                title: "Inventory App – GreenSquare Grocery",
+                category: "React",
+                tech: ["React", "JavaScript", "JSON"],
+                description:
+                    "A React-based inventory interface that loads items from JSON and displays them as reusable components.",
+                image: "./assets/inventory.png"
+            },
+            {
+                id: 3,
+                title: "Portfolio Website",
+                category: "Web",
+                tech: ["HTML5", "CSS3"],
+                description:
+                    "A single-page portfolio layout built with semantic HTML and modern CSS (Flexbox + Grid).",
+                image: "./assets/portfolio.png"
+            },
+            {
+                id: 4,
+                title: "Statistical Analysis Project (CS555)",
+                category: "Data",
+                tech: ["R", "RStudio"],
+                description:
+                    "An R-based analysis using regression and ANOVA/ANCOVA, with a written report and visualizations.",
+                image: null
+            }
+        ];
+
+        const CATEGORIES = ["All", "Web", "React", "Data"];
+
+        // ======= 分类按钮组件 =======
+        function CategoryFilter({ activeCategory, onChange }) {
+            return (
+                <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1rem" }}>
+                    {CATEGORIES.map((cat) => (
+                        <button
+                            key={cat}
+                            type="button"
+                            onClick={() => onChange(cat)}
+                            className="btn-secondary"
+                            style={{
+                                backgroundColor: activeCategory === cat ? "var(--accent-soft)" : "transparent",
+                                borderColor: activeCategory === cat ? "var(--accent)" : "var(--accent-soft)"
+                            }}
+                        >
+                            {cat}
+                        </button>
+                    ))}
+                </div>
+            );
+        }
+
+        // ======= 单个项目卡片组件 =======
+        function ProjectCard({ project }) {
+            return (
+                <div className="project-card">
+                    <h3>{project.title}</h3>
+                    <p className="subtitle" style={{ marginBottom: "0.25rem" }}>
+                        Category: {project.category}
+                    </p>
+                    <p className="subtitle" style={{ marginBottom: "0.5rem" }}>
+                        Tech: {project.tech.join(", ")}
+                    </p>
+                    <p style={{ fontSize: "0.95rem", marginBottom: "0.5rem" }}>
+                        {project.description}
+                    </p>
+                    {project.image && (
+                        <img
+                            src={project.image}
+                            alt={project.title + " screenshot"}
+                            style={{ maxWidth: "100%", borderRadius: "12px", marginTop: "0.25rem" }}
+                        />
+                    )}
+                </div>
+            );
+        }
+
+        // ======= 主 React 组件 =======
+        function ProjectsApp() {
+            const [category, setCategory] = React.useState("All");
+
+            const visibleProjects =
+                category === "All"
+                    ? PROJECTS
+                    : PROJECTS.filter((p) => p.category === category);
+
+            return (
+                <div>
+                    <CategoryFilter activeCategory={category} onChange={setCategory} />
+                    {visibleProjects.length === 0 ? (
+                        <p className="subtitle">No projects found for this category.</p>
+                    ) : (
+                        <div className="project-grid">
+                            {visibleProjects.map((p) => (
+                                <ProjectCard key={p.id} project={p} />
+                            ))}
+                        </div>
+                    )}
+                </div>
+            );
+        }
+
+        // ======= 渲染到页面 =======
+        const rootEl = document.getElementById("projects-root");
+        if (rootEl) {
+            const root = ReactDOM.createRoot(rootEl);
+            root.render(<ProjectsApp />);
+        }
+    </script>
+</body>
+</html>

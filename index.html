@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+    <title>Portfolio – Chaojin Guo</title>
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="./css/styles.css" />
@@ -15,12 +15,7 @@
     <script src="./js/main.js" defer></script>
 </head>
 
-
 <body>
-
-    <!-- Header + Navigation -->
-<body>
-
     <!-- 顶部 Header（Flexbox） -->
     <header class="site-header">
         <div class="logo">
@@ -28,18 +23,21 @@
             <span class="logo-text">Chaojin Guo</span>
         </div>
 
-        <!-- 手机端菜单按钮（可选） -->
+        <!-- 手机端菜单按钮 -->
         <button class="nav-toggle" aria-label="Toggle navigation">
             Menu
         </button>
 
-        <nav class="main-nav" aria-label="Main navigation">
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </nav>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+                <a href="resume.html">Resume</a>  <!-- 如果你有这个页 -->
+            </nav>
 
-        <!-- 主题切换（如果你还想保留深色模式） -->
+
+        <!-- 主题切换 -->
         <button class="theme-toggle" aria-label="Toggle light or dark theme">
             🌙
         </button>
@@ -73,7 +71,7 @@
             </div>
         </aside>
 
-        <!-- 右侧主内容：可以保留你之前的 hero / skills / projects，只要加上 id 对应锚点 -->
+        <!-- 右侧主内容 -->
         <main class="main-content">
             <!-- About 区域 -->
             <section id="about" class="section">
@@ -84,7 +82,7 @@
                 </p>
             </section>
 
-            <!-- Skills 区域（可选） -->
+            <!-- Skills 区域 -->
             <section class="section" id="skills">
                 <h2 class="section-title">Skills</h2>
                 <div class="skills-container">
@@ -101,103 +99,31 @@
             <section id="projects" class="section">
                 <h2 class="section-title">Featured Projects</h2>
                 <div class="project-grid">
-                    <!-- 项目卡片照旧 -->
                     <div class="project-card">
                         <h3>Smart Fridge Tracker</h3>
                         <p>Track food freshness and reduce waste using a responsive web app.</p>
+                        <a href="projects.html" class="btn-secondary">Learn More</a>
                     </div>
                     <div class="project-card">
                         <h3>Water Bottle Filling Station</h3>
                         <p>Data-driven visualization of station usage and responsive UI.</p>
+                        <a href="projects.html" class="btn-secondary">Learn More</a>
                     </div>
                     <div class="project-card">
                         <h3>Our Recipe</h3>
                         <p>React-based platform with filtering and API integration.</p>
+                        <a href="projects.html" class="btn-secondary">Learn More</a>
                     </div>
                 </div>
             </section>
 
-            <!-- Contact 区域（可以以后加表单） -->
+            <!-- Contact 区域 -->
             <section id="contact" class="section">
                 <h2 class="section-title">Get in Touch</h2>
                 <p>If you would like to connect, feel free to reach out via email or LinkedIn.</p>
             </section>
         </main>
     </div>
-
-    <!-- Footer 不变也可以 -->
-    <footer class="footer">
-        <p>© 2025 Chaojin Guo — All Rights Reserved.</p>
-    </footer>
-
-</body>
-
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-text">
-            <h1>Hello, I'm <span class="highlight">Chaojin Guo</span></h1>
-            <p class="subtitle">
-                A Boston University student passionate about web development, software engineering,
-                and data science. This site showcases my coursework, projects, and skills.
-            </p>
-            <!-- Scroll to Featured Projects section -->
-            <a href="#featured" class="btn-primary">View My Work</a>
-        </div>
-
-        <div class="hero-img">
-            <!-- Replace the src with your own image path -->
-            <img src="./assets/profile.jpg" alt="Profile photo of Chaojin Guo" />
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="section" id="skills">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-container">
-            <div class="skill-card">HTML5</div>
-            <div class="skill-card">CSS3</div>
-            <div class="skill-card">JavaScript</div>
-            <div class="skill-card">React</div>
-            <div class="skill-card">TypeScript</div>
-            <div class="skill-card">R / Data Analysis</div>
-        </div>
-    </section>
-
-    <!-- Featured Projects Section -->
-    <section class="section" id="featured">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="project-grid">
-
-            <div class="project-card">
-                <h3>Smart Fridge Tracker</h3>
-                <p>
-                    A responsive web app that helps users track food freshness, reduce waste,
-                    and maintain inventory. Built with HTML5, CSS3, and JavaScript.
-                </p>
-                <a href="projects.html" class="btn-secondary">Learn More</a>
-            </div>
-
-            <div class="project-card">
-                <h3>Water Bottle Filling Station</h3>
-                <p>
-                    A course project from MET CS601 that visualizes water usage data and
-                    demonstrates responsive layout and accessibility techniques.
-                </p>
-                <a href="projects.html" class="btn-secondary">Learn More</a>
-            </div>
-
-            <div class="project-card">
-                <h3>Our Recipe</h3>
-                <p>
-                    A React-based cooking platform where users can browse, filter, and
-                    share recipes. Includes client-side routing and API integration.
-                </p>
-                <a href="projects.html" class="btn-secondary">Learn More</a>
-            </div>
-
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -208,6 +134,5 @@
             <a href="https://github.com/grfeng4113" target="_blank" rel="noreferrer">GitHub</a>
         </div>
     </footer>
-
 </body>
 </html>
