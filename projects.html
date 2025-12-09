@@ -13,7 +13,7 @@
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <!-- Main JS (navigation, theme, forms, etc.) -->
+    <!-- Main JS -->
     <script src="./js/main.js" defer></script>
 </head>
 <body>
@@ -46,16 +46,26 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-section">
-                <h2>Projects</h2>
-                <p>A selection of web and data projects from my BU coursework.</p>
+                <h2>Profile</h2>
+                <p>Boston University student focused on Web Development and Data Analytics.</p>
             </div>
 
             <div class="sidebar-section">
                 <h2>Quick Links</h2>
                 <ul>
-                    <li><a href="projects.html">All Projects</a></li>
-                    <li><a href="resume.html">Resume</a></li>
+                    <li><a href="about.html">About Me</a></li>
+                    <li><a href="projects.html">Projects</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="resume.html">Resume</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h2>Contact</h2>
+                <ul>
+                    <li><a href="mailto:gr4113@bu.edu">Email</a></li>
+                    <li><a href="https://www.linkedin.com/in/chaojin-guo-b07218328/" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://github.com/grfeng4113" target="_blank">GitHub</a></li>
                 </ul>
             </div>
         </aside>
@@ -65,13 +75,12 @@
             <section class="section">
                 <h1 class="section-title">Projects</h1>
                 <p class="subtitle">
-                    This page is rendered using <strong>React</strong>. You can filter projects
-                    by category to explore different types of work.
+                    This page is rendered using <strong>React</strong>. You can filter and preview
+                    project screenshots by clicking on them.
                 </p>
             </section>
 
             <section class="section">
-                <!-- React Mounting Point -->
                 <div id="projects-root"></div>
             </section>
         </main>
@@ -109,7 +118,7 @@
                 category: "Web",
                 tech: ["HTML5", "CSS3"],
                 description:
-                    "A single-page portfolio layout built with semantic HTML and modern CSS (Flexbox + Grid).",
+                    "A multi-page portfolio layout built with semantic HTML and modern CSS (Flexbox + Grid).",
                 image: "./assets/portfolio.png"
             },
             {
@@ -125,7 +134,28 @@
 
         const CATEGORIES = ["All", "Web", "React", "Data"];
 
-        // ======= Category Filter Component =======
+        // ======= Lightbox Component =======
+        function ImageLightbox({ src, alt, onClose }) {
+            React.useEffect(() => {
+                const esc = (e) => e.key === "Escape" && onClose();
+                window.addEventListener("keydown", esc);
+                return () => window.removeEventListener("keydown", esc);
+            }, [onClose]);
+
+            if (!src) return null;
+            return (
+                <div className="lightbox-overlay" onClick={onClose}>
+                    <img
+                        src={src}
+                        alt={alt}
+                        className="lightbox-img"
+                        onClick={(e) => e.stopPropagation()}
+                    />
+                </div>
+            );
+        }
+
+        // ======= Category Filter =======
         function CategoryFilter({ activeCategory, onChange }) {
             return (
                 <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1rem" }}>
@@ -137,7 +167,7 @@
                             className="btn-secondary"
                             style={{
                                 backgroundColor: activeCategory === cat ? "var(--accent-soft)" : "transparent",
-                                borderColor: activeCategory === cat ? "var(--accent)" : "var(--accent-soft)"
+                                borderColor: activeCategory === cat ? "var(--accent)" : "var(--accent-soft)",
                             }}
                         >
                             {cat}
@@ -147,34 +177,31 @@
             );
         }
 
-        // ======= Single Project Card Component =======
-        function ProjectCard({ project }) {
+        // ======= Project Card with Click-to-Zoom =======
+        function ProjectCard({ project, onImageClick }) {
             return (
                 <div className="project-card">
                     <h3>{project.title}</h3>
-                    <p className="subtitle" style={{ marginBottom: "0.25rem" }}>
-                        Category: {project.category}
-                    </p>
-                    <p className="subtitle" style={{ marginBottom: "0.5rem" }}>
-                        Tech: {project.tech.join(", ")}
-                    </p>
-                    <p style={{ fontSize: "0.95rem", marginBottom: "0.5rem" }}>
-                        {project.description}
-                    </p>
+                    <p className="subtitle">Category: {project.category}</p>
+                    <p className="subtitle">Tech: {project.tech.join(", ")}</p>
+                    <p style={{ fontSize: "0.95rem" }}>{project.description}</p>
+
                     {project.image && (
                         <img
                             src={project.image}
                             alt={project.title + " screenshot"}
-                            style={{ maxWidth: "100%", borderRadius: "12px", marginTop: "0.25rem" }}
+                            className="project-thumb"
+                            onClick={() => onImageClick(project.image, project.title)}
                         />
                     )}
                 </div>
             );
         }
 
-        // ======= React Components =======
+        // ======= Main App =======
         function ProjectsApp() {
             const [category, setCategory] = React.useState("All");
+            const [lightbox, setLightbox] = React.useState({ src: null, alt: "" });
 
             const visibleProjects =
                 category === "All"
@@ -184,25 +211,62 @@
             return (
                 <div>
                     <CategoryFilter activeCategory={category} onChange={setCategory} />
-                    {visibleProjects.length === 0 ? (
-                        <p className="subtitle">No projects found for this category.</p>
-                    ) : (
-                        <div className="project-grid">
-                            {visibleProjects.map((p) => (
-                                <ProjectCard key={p.id} project={p} />
-                            ))}
-                        </div>
-                    )}
+                    <div className="project-grid">
+                        {visibleProjects.map((p) => (
+                            <ProjectCard
+                                key={p.id}
+                                project={p}
+                                onImageClick={(src, alt) => setLightbox({ src, alt })}
+                            />
+                        ))}
+                    </div>
+
+                    <ImageLightbox
+                        src={lightbox.src}
+                        alt={lightbox.alt}
+                        onClose={() => setLightbox({ src: null, alt: "" })}
+                    />
                 </div>
             );
         }
 
-        // ======= Render to page =======
+        // ======= Render =======
         const rootEl = document.getElementById("projects-root");
         if (rootEl) {
             const root = ReactDOM.createRoot(rootEl);
             root.render(<ProjectsApp />);
         }
     </script>
+
+    <!-- Lightbox CSS -->
+    <style>
+        .project-thumb {
+            max-width: 100%;
+            border-radius: 12px;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+            margin-top: 0.35rem;
+        }
+        .project-thumb:hover {
+            transform: scale(1.02);
+        }
+        .lightbox-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            cursor: zoom-out;
+        }
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+        }
+    </style>
+
 </body>
 </html>
