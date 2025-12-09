@@ -334,16 +334,19 @@ body {
 @media (max-width: 768px) {
     .main-nav {
         position: absolute;
-        right: 1rem;
-        top: 3rem;
+        left: 0;
+        right: 0;
+        top: 100%;
+        margin-top: 0.4rem;
         flex-direction: column;
         align-items: flex-start;
         background-color: var(--bg-surface);
         border-radius: 16px;
-        padding: 0.75rem;
+        padding: 0.75rem 1rem;
         box-shadow: var(--shadow-soft);
-        min-width: 180px;
+        min-width: 0;
         display: none;
+        z-index: 190;
     }
 
     .main-nav.open {
@@ -363,6 +366,7 @@ body {
         order: -1;
     }
 }
+
 
 
 /* Sidebar + Main */
