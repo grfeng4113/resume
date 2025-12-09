@@ -362,8 +362,11 @@ body {
     }
 
     .sidebar {
-        position: static;
-        order: -1;
+        display: none;
+    }
+
+    .page-layout {
+        grid-template-columns: 1fr;
     }
 }
 
